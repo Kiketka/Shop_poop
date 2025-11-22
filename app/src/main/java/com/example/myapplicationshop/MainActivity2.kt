@@ -5,9 +5,13 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import Produkt
 import android.content.Intent
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.LinearLayout
+import android.widget.ListView
 import android.widget.TextView
 
 
@@ -25,29 +29,77 @@ class MainActivity2 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sek)
 
-    val container = findViewById<LinearLayout>(R.id.Catalog)
+        val container = findViewById<ListView>(R.id.lvCatalog)
 
-        products.forEach{ produkt ->
-            val view = layoutInflater.inflate(R.layout.item_product,container, false)
 
-            view.findViewById<ImageView>(R.id.ivProductImage).setImageResource(produkt.ImageRes)
-            view.findViewById<TextView>(R.id.tvProductName).text = produkt.name
-            view.findViewById<TextView>(R.id.tvProductPrise).text = "${produkt.price} ₽"
+//    val container = findViewById<LinearLayout>(R.id.Catalog)
+//
+//        products.forEach{ produkt ->
+//            val view = layoutInflater.inflate(R.layout.item_product,container, false)
+//
+//            view.findViewById<ImageView>(R.id.ivProductImage).setImageResource(produkt.ImageRes)
+//            view.findViewById<TextView>(R.id.tvProductName).text = produkt.name
+//            view.findViewById<TextView>(R.id.tvProductPrise).text = "${produkt.price} ₽"
+//
+//            view.findViewById<Button>(R.id.btnDetails).setOnClickListener {
+//                val intent = Intent(this,
+//                DeteilActivity::class.java).apply {
+//                    putExtra("name", produkt.name)
+//                    putExtra("price", produkt.price)
+//                    putExtra("ImageRes", produkt.ImageRes)
+//                    putExtra("description", produkt.description)
+//
+//                }
+//                startActivity(intent)
+//            }
+//
+//            container.addView(view)
+//        }
 
-            view.findViewById<Button>(R.id.btnDetails).setOnClickListener {
-                val intent = Intent(this,
-                DeteilActivity::class.java).apply {
-                    putExtra("name", produkt.name)
-                    putExtra("price", produkt.price)
-                    putExtra("ImageRes", produkt.ImageRes)
-                    putExtra("description", produkt.description)
 
-                }
-                startActivity(intent)
+    }
+}
+
+
+class ProductAdapter(
+    private val context: android.content.Context,
+    private val products: List<Produkt>
+) : android.widget.BaseAdapter() {
+
+    override fun getCount() = products.size
+
+    override fun getItem(position: Int) = products[position]
+
+    override fun getItemId(position: Int) = position.toLong()
+
+    override fun getView(pos: Int, convertView: View?, parent: ViewGroup?): View? {
+        val view = convertView ?: LayoutInflater.from(context)
+            .inflate(R.layout.item_product, parent, false)
+
+        val produkt = getItem(pos)
+
+        val image = view.findViewById<ImageView>(R.id.ivProductImage)
+        val name = view.findViewById<TextView>(R.id.tvProductName)
+        val prise = view.findViewById<TextView>(R.id.tvProductPrise)
+        val button = view.findViewById<Button>(R.id.btnDetails)
+
+        image.setImageResource(produkt.ImageRes)
+        name.text = produkt.name
+        prise.text = "${produkt.price} ₽"
+
+        button.setOnClickListener {
+            val intent = Intent(
+                context,
+                DeteilActivity::class.java
+            ).apply {
+                putExtra("name", produkt.name)
+                putExtra("price", produkt.price)
+                putExtra("ImageRes", produkt.ImageRes)
+                putExtra("description", produkt.description)
+
             }
-
-            container.addView(view)
+            context.startActivity(intent)
         }
-
+        return view
     }
 }
