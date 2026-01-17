@@ -31,6 +31,10 @@ class MainActivity2 : AppCompatActivity() {
 
         val container = findViewById<ListView>(R.id.lvCatalog)
 
+        val adapter = ProductAdapter(this, products )
+
+        container.adapter = adapter
+
 
 //    val container = findViewById<LinearLayout>(R.id.Catalog)
 //
