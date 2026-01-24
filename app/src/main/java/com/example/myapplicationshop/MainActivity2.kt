@@ -13,6 +13,8 @@ import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
+import android.widget.Toolbar
+import com.google.android.material.appbar.MaterialToolbar
 
 
 private val products = listOf(
@@ -29,6 +31,8 @@ class MainActivity2 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sek)
 
+        val toolBar = findViewById<MaterialToolbar>(R.id.topBar)
+        setSupportActionBar(toolBar)
         val container = findViewById<ListView>(R.id.lvCatalog)
 
         val adapter = ProductAdapter(this, products )
