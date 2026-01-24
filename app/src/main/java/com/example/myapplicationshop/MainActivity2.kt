@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity
 import Produkt
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.Menu
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
@@ -14,6 +16,8 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toolbar
+import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
 
 
@@ -26,6 +30,11 @@ private val products = listOf(
 )
 
 class MainActivity2 : AppCompatActivity() {
+    private lateinit var lvList: ListView
+    private lateinit var rvGrid: RecyclerView
+    private lateinit var listAdapter: ProductAdapter
+    private lateinit var gridAdapter: ProductGridAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -33,11 +42,56 @@ class MainActivity2 : AppCompatActivity() {
 
         val toolBar = findViewById<MaterialToolbar>(R.id.topBar)
         setSupportActionBar(toolBar)
-        val container = findViewById<ListView>(R.id.lvCatalog)
 
-        val adapter = ProductAdapter(this, products )
+        lvList = findViewById(R.id.lvCatalog)
+        rvGrid = findViewById(R.id.rvCatalogGrid)
 
-        container.adapter = adapter
+        listAdapter = ProductAdapter(this, products)
+
+        gridAdapter = ProductGridAdapter(this, products)
+
+        lvList.adapter = listAdapter
+
+        rvGrid.layoutManager = GridLayoutManager(this, 2)
+        rvGrid.adapter = gridAdapter
+    }
+
+    private fun showList() {
+        lvList.visibility = View.VISIBLE
+        rvGrid.visibility = View.GONE
+    }
+
+    private fun showGrid() {
+        lvList.visibility = View.GONE
+        rvGrid.visibility = View.VISIBLE
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu?): Boolean {
+        menuInflater.inflate(R.menu.menu_second, menu)
+        return true
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_list) {
+            showList()
+            return true
+        }
+        if (item.itemId == R.id.action_Grid) {
+            showGrid()
+            return true
+        }
+
+        return super.onOptionsItemSelected(item)
+
+
+    }
+
+
+//        val container = findViewById<ListView>(R.id.lvCatalog)
+//
+//        val adapter = ProductAdapter(this, products )
+//
+//        container.adapter = adapter
 
 
 //    val container = findViewById<LinearLayout>(R.id.Catalog)
@@ -66,7 +120,7 @@ class MainActivity2 : AppCompatActivity() {
 
 
     }
-}
+
 
 
 class ProductAdapter(
