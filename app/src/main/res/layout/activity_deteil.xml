@@ -12,6 +12,7 @@
         android:gravity="center_horizontal"
         android:orientation="vertical"
         android:background="#A27878">
+
         <Button
             android:id="@+id/bekbtn"
             android:layout_width="wrap_content"
@@ -20,7 +21,6 @@
             android:backgroundTint="@color/BackBtn"
             android:textColor="#FFFFFF"
             android:text="@string/BackText">
-
         </Button>
 
         <ImageView

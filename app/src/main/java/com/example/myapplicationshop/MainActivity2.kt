@@ -40,6 +40,8 @@ class MainActivity2 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sek)
 
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+
         val toolBar = findViewById<MaterialToolbar>(R.id.topBar)
         setSupportActionBar(toolBar)
 
