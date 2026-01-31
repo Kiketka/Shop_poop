@@ -17,9 +17,9 @@
             android:layout_width="wrap_content"
             android:layout_height="15pt"
             android:layout_gravity="bottom"
-            android:backgroundTint="#5B4545"
+            android:backgroundTint="@color/BackBtn"
             android:textColor="#FFFFFF"
-            android:text="Назат">
+            android:text="@string/BackText">
 
         </Button>
 
@@ -70,9 +70,9 @@
             android:layout_width="wrap_content"
             android:layout_height="20pt"
             android:layout_gravity="right"
-            android:backgroundTint="#BD9E9E"
+            android:backgroundTint="@color/Bacgmain"
             android:textStyle="bold"
-            android:text="ПРИОБРЕСТИ">
+            android:text="@string/DetailBtn">
 
         </Button>
 

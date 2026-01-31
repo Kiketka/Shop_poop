@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">My Application shop</string>
+    <string name="welcaamText">Добро пожаловать в Выгодно и две точки</string>
+    <string name="BtnMainText">Начать покупки</string>
+    <string name="kat">Каталог</string>
+    <string name="DetailBtn">Приобрести</string>
+    <string name="BackText">Назат</string>
 </resources>

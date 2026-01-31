@@ -2,4 +2,8 @@
 <resources>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="Btnmain">#BD9E9E</color>
+    <color name="Bacgmain">#F2EBEB</color>
+    <color name="katbcg">#5B2B2B</color>
+    <color name="BackBtn">#5B4545</color>
 </resources>

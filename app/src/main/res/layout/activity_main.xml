@@ -5,7 +5,7 @@
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F2EBEB"
+    android:background="@color/Bacgmain"
     android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="15dp"
@@ -20,7 +20,7 @@
         android:layout_height="90dp"
         android:gravity="center"
         android:shadowDy="1"
-        android:text="Добро пожаловать в Выгодно и две точки"
+        android:text="@string/welcaamText"
         android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
@@ -30,9 +30,9 @@
         android:id="@+id/btnStart"
         android:layout_width="210dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#BD9E9E"
+        android:backgroundTint="@color/Btnmain"
         android:gravity="center"
-        android:text="Начать покупки"
+        android:text="@string/BtnMainText"
         app:strokeColor="#A27070" />
 
     <ImageView
