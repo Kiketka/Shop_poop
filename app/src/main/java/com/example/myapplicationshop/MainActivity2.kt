@@ -56,16 +56,27 @@ class MainActivity2 : AppCompatActivity() {
 
         rvGrid.layoutManager = GridLayoutManager(this, 2)
         rvGrid.adapter = gridAdapter
+
+        val isGridPref = prefs.getBoolean("isGrid", true)
+        if ( isGridPref == true){
+            showGrid()
+        } else{
+            showList()
+        }
     }
 
     private fun showList() {
         lvList.visibility = View.VISIBLE
         rvGrid.visibility = View.GONE
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+        prefs.edit().putBoolean("isGrid", false).apply()
     }
 
     private fun showGrid() {
         lvList.visibility = View.GONE
         rvGrid.visibility = View.VISIBLE
+        val prefs = getSharedPreferences("settings", MODE_PRIVATE)
+        prefs.edit().putBoolean("isGrid", true).apply()
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
@@ -156,6 +167,7 @@ class ProductAdapter(
                 context,
                 DeteilActivity::class.java
             ).apply {
+                putExtra("id", produkt.id)
                 putExtra("name", produkt.name)
                 putExtra("price", produkt.price)
                 putExtra("ImageRes", produkt.ImageRes)

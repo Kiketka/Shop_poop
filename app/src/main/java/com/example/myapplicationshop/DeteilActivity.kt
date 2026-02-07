@@ -1,5 +1,6 @@
 package com.example.myapplicationshop
 
+import Produkt
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageView
@@ -9,6 +10,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.example.myapplicationshop.model.CartStorage
 
 class DeteilActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,6 +23,7 @@ class DeteilActivity : AppCompatActivity() {
         val productPrice = intent.getDoubleExtra("price", 0.0)
         val productImageRes = intent.getIntExtra("ImageRes", 0)
         val productdescription = intent.getStringExtra("description") ?: "Описания нет"
+        val productId = intent.getIntExtra("id", -1)// -1 = не пришло
 
         val deteilImage = findViewById<ImageView>(R.id.detailIMG)
         val detailName = findViewById<TextView>(R.id.detailName)
@@ -31,11 +34,20 @@ class DeteilActivity : AppCompatActivity() {
 
         deteilImage.setImageResource(productImageRes)
         detailName.text = productName
-        detailPryse.text = "$productPrice $"
+        detailPryse.text = "$productPrice ₽"
         detailDescription.text = productdescription
 
 
         buybtn.setOnClickListener {
+            val one_new_product = Produkt(
+                id = productId,
+                name = productName,
+                price = productPrice,
+                productdescription,
+                ImageRes = productImageRes)
+
+            CartStorage.addCart(one_new_product)
+
             Toast.makeText(this, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
         }
 
