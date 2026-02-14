@@ -13,5 +13,10 @@
         android:title="Сетка"
         android:icon="@drawable/movie"
         app:showAsAction="always" />
+    <item
+        android:id="@+id/action_Cart"
+        android:title="Карзина"
+        android:icon="@drawable/cart"
+        app:showAsAction="always"/>
 
 </menu>

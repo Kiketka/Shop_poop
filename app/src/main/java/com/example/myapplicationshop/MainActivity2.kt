@@ -45,6 +45,7 @@ class MainActivity2 : AppCompatActivity() {
         val toolBar = findViewById<MaterialToolbar>(R.id.topBar)
         setSupportActionBar(toolBar)
 
+
         lvList = findViewById(R.id.lvCatalog)
         rvGrid = findViewById(R.id.rvCatalogGrid)
 
@@ -85,6 +86,10 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId ==R.id.action_Cart){
+            startActivity(Intent(this, CartActivity::class.java))
+            return true
+        }
         if (item.itemId == R.id.action_list) {
             showList()
             return true
