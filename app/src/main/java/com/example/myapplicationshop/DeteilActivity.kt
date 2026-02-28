@@ -46,7 +46,7 @@ class DeteilActivity : AppCompatActivity() {
                 productdescription,
                 ImageRes = productImageRes)
 
-            CartStorage.addCart(one_new_product)
+            CartStorage.add_item(this, one_new_product)
 
             Toast.makeText(this, "Товар добавлен в корзину", Toast.LENGTH_SHORT).show()
         }

@@ -31,7 +31,7 @@ class CartActivity : AppCompatActivity() {
         }
         tvTotak.text = "Итого: ${total} ₽"
         btnClear.setOnClickListener {
-            CartStorage.clear()
+            CartStorage.clear(this)
             rv.adapter = CartAdapter(emptyList())
             tvTotak.text = "Итого: 0 "
         }
