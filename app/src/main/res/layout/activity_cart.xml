@@ -35,12 +35,40 @@
         android:textColor="@color/white"/>
 
     <Button
-        android:id="@+id/btnClearCart"
+        android:id="@+id/btnMakeOrder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/white"
         android:textColor="@color/katbcg"
         android:textSize="18dp"
+        android:text="Оформить заказ"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+    <Button
+        android:id="@+id/btnClearCart"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="60dp"
+        android:backgroundTint="#F80303"
+        android:textColor="@color/katbcg"
+        android:textSize="18dp"
+        android:layout_marginRight="24dp"
         android:text="Очистить корзину"/>
+
+    <Button
+        android:id="@+id/btnOpenHistory"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="60dp"
+        android:backgroundTint="#423F3F"
+        android:textColor="@color/Bacgmain"
+        android:textSize="18dp"
+        android:text="История покупок"/>
+
+</LinearLayout>
+
+
 
 </LinearLayout>
