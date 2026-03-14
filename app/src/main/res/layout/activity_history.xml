@@ -9,7 +9,7 @@
     <TextView
         android:id="@+id/tvHisttoryTitle"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:text="История"
         android:textSize="24dp"
         android:textAlignment="center"
