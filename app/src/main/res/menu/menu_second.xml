@@ -18,5 +18,10 @@
         android:title="Карзина"
         android:icon="@drawable/cart"
         app:showAsAction="always"/>
+    <item
+        android:id="@+id/action_favorite"
+        android:title="Карзина"
+        android:icon="@drawable/heart"
+        app:showAsAction="always"/>
 
 </menu>
