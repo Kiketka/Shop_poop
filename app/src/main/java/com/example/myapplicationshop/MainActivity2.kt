@@ -91,6 +91,10 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.action_favorite){
+            startActivity(Intent(this, FavoriteActivity::class.java))
+            return true
+        }
         if (item.itemId ==R.id.action_Cart){
             startActivity(Intent(this, CartActivity::class.java))
             return true

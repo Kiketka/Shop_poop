@@ -9,6 +9,7 @@ import android.content.Intent
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplicationshop.model.CartStorage
+import com.example.myapplicationshop.model.FavoriteStorage
 import com.example.myapplicationshop.model.HistoryStorage
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +20,7 @@ class MainActivity : AppCompatActivity() {
 
         CartStorage.init(this)
         HistoryStorage.init(this)
+        FavoriteStorage.init(this)
 
         val btn_Start = findViewById<Button>(R.id.btnStart)
 

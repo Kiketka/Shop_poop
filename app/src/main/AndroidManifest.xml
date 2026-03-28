@@ -18,6 +18,9 @@
             android:name=".HistoryActivity"
             android:exported="false" />
         <activity
+            android:name=".FavoriteActivity"
+            android:exported="false" />
+        <activity
             android:name=".DeteilActivity"
             android:exported="false" />
         <activity
