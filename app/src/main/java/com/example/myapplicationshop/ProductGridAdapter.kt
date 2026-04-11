@@ -3,12 +3,15 @@ package com.example.myapplicationshop
 import Produkt
 import android.content.Intent
 import android.view.LayoutInflater
+import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import android.widget.Button
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+
 
 class ProductGridAdapter(
     private val context: android.content.Context,
@@ -37,6 +40,8 @@ class ProductGridAdapter(
         holder.name.text = product.name
         holder.prise.text = "${product.price} ₽"
 
+        holder.itemView.startAnimation(AnimationUtils.loadAnimation(holder.itemView.context, R.anim.item_appear))
+
 
         holder.button.setOnClickListener {
             val intent = Intent(context, DeteilActivity::class.java
@@ -49,6 +54,21 @@ class ProductGridAdapter(
 
             }
             context.startActivity(intent)
+        }
+
+        holder.button.setOnTouchListener { v, event ->
+            if (event.action == MotionEvent.ACTION_DOWN){
+                v.startAnimation(AnimationUtils.loadAnimation(v.context, R.anim.scale_down))
+            }
+            if (event.action == MotionEvent.ACTION_UP){
+                v.startAnimation(AnimationUtils.loadAnimation(v.context, R.anim.scale_upp))
+            }
+
+            if (event.action == MotionEvent.ACTION_CANCEL){
+                v.startAnimation(AnimationUtils.loadAnimation(v.context, R.anim.scale_upp))
+            }
+
+            false
         }
 
     }
