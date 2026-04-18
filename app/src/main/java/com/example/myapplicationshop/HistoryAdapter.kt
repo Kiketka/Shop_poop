@@ -6,10 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
 import android.widget.ImageView
+import android.widget.RatingBar
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationshop.CartAdapter.VH
 import com.example.myapplicationshop.model.Order
+import com.example.myapplicationshop.model.RatingStorage
 
 class HistoryAdapter (
     private val items: List<Order>): RecyclerView.Adapter<HistoryAdapter.VH>() {
@@ -19,6 +21,7 @@ class HistoryAdapter (
         val name: TextView = view.findViewById<TextView>(R.id.tvHistoryName)
         val prise: TextView = view.findViewById<TextView>(R.id.tvHistoryPrise)
         val date: TextView = view.findViewById<TextView>(R.id.tvHistoryDate)
+        val ratingBar = view.findViewById<RatingBar>(R.id.rbHistory)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HistoryAdapter.VH {
@@ -37,5 +40,13 @@ class HistoryAdapter (
         holder.prise.text = "${order.quantity} x ${order.product.price} ₽ = ${order.totalPrice} ₽"
         holder.date.text = order.dateTime
 
+        // работа с рейтингом
+        // получаем кол-во звезд из настроек
+        val savedRating = RatingStorage.get(holder.itemView.context, order.product.id)
+        holder.ratingBar.rating = savedRating
+        holder.ratingBar.setOnRatingBarChangeListener{_, rating, _ ->
+            RatingStorage.save(holder.itemView.context, order.product.id, rating)
+
+        }
     }
 }

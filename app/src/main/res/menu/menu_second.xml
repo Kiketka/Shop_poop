@@ -3,6 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
+        android:id="@+id/action_sort"
+        android:title="Сортировка"
+        android:icon="@drawable/shuffle"
+        app:showAsAction="always" >
+        <menu>
+            <item
+                android:id="@+id/sort_def"
+                android:title="По умолчанию"
+                />
+            <item
+                android:id="@+id/sort_asc"
+                android:title="По цене ↑ "
+                />
+            <item
+                android:id="@+id/sort_desc"
+                android:title="По цене ↓"
+                 />
+        </menu>
+    </item>
+
+    <item
         android:id="@+id/action_list"
         android:title="Список"
         android:icon="@drawable/list"
@@ -23,5 +44,6 @@
         android:title="Карзина"
         android:icon="@drawable/heart"
         app:showAsAction="always"/>
+
 
 </menu>

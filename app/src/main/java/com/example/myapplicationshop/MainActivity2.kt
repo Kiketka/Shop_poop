@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import Produkt
+import android.content.Context.MODE_PRIVATE
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.Menu
@@ -18,6 +19,7 @@ import android.widget.LinearLayout
 import android.widget.ListView
 import android.widget.TextView
 import android.widget.Toolbar
+import androidx.activity.enableEdgeToEdge
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.android.material.appbar.MaterialToolbar
@@ -36,6 +38,11 @@ private val products = listOf(
     Produkt(id=10, name="Франшиза10", price = 2900.0, description = "Сочные бургеры с мраморной говядиной, хрустящий картофель фри и холодные крафтовые напитки. Неформальная обстановка, яркие плакаты и деревянные столы.", ImageRes =R.drawable.ten ),
 )
 
+private val originalList = mutableListOf<Produkt>()
+private val currantlList = mutableListOf<Produkt>()
+
+
+
 class MainActivity2 : AppCompatActivity() {
     private lateinit var lvList: ListView
     private lateinit var rvGrid: RecyclerView
@@ -47,6 +54,9 @@ class MainActivity2 : AppCompatActivity() {
         enableEdgeToEdge()
         setContentView(R.layout.activity_sek)
 
+        originalList.addAll(products)
+        currantlList.addAll(products)
+
         val prefs = getSharedPreferences("settings", MODE_PRIVATE)
 
         val toolBar = findViewById<MaterialToolbar>(R.id.topBar)
@@ -56,9 +66,9 @@ class MainActivity2 : AppCompatActivity() {
         lvList = findViewById(R.id.lvCatalog)
         rvGrid = findViewById(R.id.rvCatalogGrid)
 
-        listAdapter = ProductAdapter(this, products)
+        listAdapter = ProductAdapter(this, currantlList)
 
-        gridAdapter = ProductGridAdapter(this, products)
+        gridAdapter = ProductGridAdapter(this, currantlList)
 
         lvList.adapter = listAdapter
 
@@ -93,6 +103,28 @@ class MainActivity2 : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        when (item.itemId){
+            R.id.sort_def -> {
+                currantlList.clear()
+                currantlList.addAll(originalList)
+                listAdapter.notifyDataSetChanged()
+                gridAdapter.notifyDataSetChanged()
+                return true
+            }
+            R.id.sort_asc -> {
+                currantlList.sortBy{it.price}
+                listAdapter.notifyDataSetChanged()
+                gridAdapter.notifyDataSetChanged()
+                return true
+            }
+            R.id.sort_desc -> {
+                currantlList.sortByDescending{it.price}
+                listAdapter.notifyDataSetChanged()
+                gridAdapter.notifyDataSetChanged()
+                return true
+            }
+
+        }
         if (item.itemId == R.id.action_favorite){
             startActivity(Intent(this, FavoriteActivity::class.java))
             return true
