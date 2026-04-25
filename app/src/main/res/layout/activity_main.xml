@@ -14,6 +14,12 @@
     tools:context=".MainActivity">
 
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:orientation="vertical"
+        android:gravity="center">
     <TextView
         style="@android:style/Widget.Material.Light.TextView.SpinnerItem"
         android:layout_width="242dp"
@@ -40,6 +46,19 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:srcCompat="@drawable/v914_ning_19a" />
+
+    </LinearLayout>
+
+
+
+
+    <ImageButton
+        android:id="@+id/btnMusic"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="160dp"
+        android:backgroundTint="#A27070"
+        android:src="@drawable/baseline_volume_up_24"/>
 
 
 </LinearLayout>

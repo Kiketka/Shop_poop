@@ -6,14 +6,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.widget.Button
 import android.widget.Toast
 import android.content.Intent
+import android.media.MediaPlayer
 import android.view.MotionEvent
 import android.view.animation.AnimationUtils
+import android.widget.ImageButton
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.example.myapplicationshop.model.CartStorage
 import com.example.myapplicationshop.model.FavoriteStorage
 import com.example.myapplicationshop.model.HistoryStorage
-
+var mediaPlayer: MediaPlayer? = null
+var isPlaying = false
 class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +27,22 @@ class MainActivity : AppCompatActivity() {
         HistoryStorage.init(this)
         FavoriteStorage.init(this)
 
+        var btn_music = findViewById<ImageButton>(R.id.btnMusic)
+        mediaPlayer = MediaPlayer.create(this, R.raw.pigstep)
+
+
+        btn_music.setOnClickListener {
+            if (isPlaying == false){
+                mediaPlayer?.start()
+                isPlaying = true
+                btn_music.setImageResource(R.drawable.volume_mute)
+            }
+            else {
+                mediaPlayer?.stop()
+                isPlaying = false
+                btn_music.setImageResource(R.drawable.baseline_volume_up_24)
+            }
+        }
         val btn_Start = findViewById<Button>(R.id.btnStart)
 
         btn_Start.setOnClickListener {
@@ -55,5 +74,10 @@ class MainActivity : AppCompatActivity() {
 
 
 
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mediaPlayer?.release()
     }
 }
