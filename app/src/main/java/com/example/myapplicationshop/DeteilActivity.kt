@@ -12,6 +12,8 @@ import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import com.example.myapplicationshop.model.CartStorage
 import com.example.myapplicationshop.model.FavoriteStorage
 
@@ -28,7 +30,7 @@ class DeteilActivity : AppCompatActivity() {
         val productdescription = intent.getStringExtra("description") ?: "Описания нет"
         val productId = intent.getIntExtra("id", -1)// -1 = не пришло
 
-        val deteilImage = findViewById<ImageView>(R.id.detailIMG)
+        val rvDetailImg = findViewById<RecyclerView>(R.id.rvDetailImg)
         val detailName = findViewById<TextView>(R.id.detailName)
         val detailPryse = findViewById<TextView>(R.id.detailPryse)
         val detailDescription = findViewById<TextView>(R.id.detailDescription)
@@ -36,12 +38,21 @@ class DeteilActivity : AppCompatActivity() {
         val bekbtn = findViewById<Button>(R.id.bekbtn)
         val favoriteBtn = findViewById<Button>(R.id.favoritebtn)
 
-        deteilImage.setImageResource(productImageRes)
+        rvDetailImg.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+        val images = when (productId){
+            1 -> listOf(R.drawable.one, R.drawable.restor1, R.drawable.restor2)
+            2 -> listOf(R.drawable.two, R.drawable.ofice, R.drawable.ofice3)
+            3 -> listOf(R.drawable.thre, R.drawable.ofice4, R.drawable.ofice5, R.drawable.ofice6)
+
+            else -> listOf(productImageRes)
+        }
+
+
+        rvDetailImg.adapter = ImageGalleryAdapter(images)
         detailName.text = productName
         detailPryse.text = "$productPrice ₽"
         detailDescription.text = productdescription
 
-        deteilImage.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade))
         detailName.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade))
         detailPryse.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade))
         detailDescription.startAnimation(AnimationUtils.loadAnimation(this, R.anim.fade))

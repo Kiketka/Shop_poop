@@ -20,7 +20,7 @@ class ImageGalleryAdapter (
     }
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_Img, parent, false)
+            .inflate(R.layout.item_img, parent, false)
         return VH(view)
     }
 
